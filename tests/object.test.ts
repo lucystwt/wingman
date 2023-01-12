@@ -1,4 +1,4 @@
-import { isObject } from '../src/object'
+import { hasOwnProperty, isObject } from '../src/object'
 
 describe('test object', () => {
   test('test isObject', () => {
@@ -12,5 +12,11 @@ describe('test object', () => {
         /* */
       })
     ).toBe(false)
+  })
+
+  test('test hasOwnProperty', () => {
+    const testObj = { a: 1, b: true }
+    expect(hasOwnProperty(testObj, 'a')).toBe(true)
+    expect(hasOwnProperty(testObj, 'c')).toBe(false)
   })
 })

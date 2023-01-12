@@ -1,6 +1,6 @@
 import { TreeNode } from './array.types'
 
-export function isArray(obj: unknown) {
+export function isArray<T>(obj: T) {
   return Array.isArray(obj)
 }
 
