@@ -1,6 +1,6 @@
 {
   "name": "lil-wingman",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "license": "MIT",
   "author": "lucystwt",
   "description": "A JavaScript helper library, written in TypeScript.",

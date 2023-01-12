@@ -1,4 +1,4 @@
 export default {
   '*.{js,ts}': 'eslint --fix',
-  '*.ts': 'pnpm check',
+  '**/*.ts?(x)': () => 'pnpm check',
 }

@@ -1,7 +1,5 @@
-import { TreeNode } from './array.types'
-
-export function isArray<T>(obj: T) {
-  return Array.isArray(obj)
+export type TreeNode<T> = T & {
+  children?: T[]
 }
 
 export function arrayToTree<T extends Record<string, never>>(
