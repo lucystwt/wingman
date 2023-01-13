@@ -17,8 +17,10 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
-    
+
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+
+    '@typescript-eslint/no-explicit-any': 0,
   },
 }

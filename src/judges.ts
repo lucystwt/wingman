@@ -1,31 +1,96 @@
-export function isNumber<T>(obj: T) {
-  return typeof obj === 'number'
+type ValueType =
+  | 'Object'
+  | 'Array'
+  | 'Function'
+  | 'GeneratorFunction'
+  | 'AsyncFunction'
+  | 'Promise'
+  | 'RegExp'
+  | 'Date'
+  | 'Set'
+  | 'Map'
+
+const toString = Object.prototype.toString
+
+export function isFunction<T>(value: T) {
+  return _prototypeof(value, [
+    'Function',
+    'GeneratorFunction',
+    'AsyncFunction',
+    'Promise',
+  ])
 }
 
-export function isBoolean<T>(obj: T) {
-  return typeof obj === 'boolean'
+export function isAsyncFunction<T>(value: T) {
+  return _prototypeof(value, 'AsyncFunction')
 }
 
-export function isString<T>(obj:T) {
-  return typeof obj === 'string'
+export function isRegExp<T>(value: T) {
+  return _prototypeof(value, 'RegExp')
 }
 
-export function isObject<T>(obj: T) {
-  return Object.prototype.toString.call(obj) === '[object Object]'
+export function isDate<T>(value: T) {
+  return _prototypeof(value, 'Date')
 }
 
-export function isArray<T>(obj: T) {
-  return Array.isArray(obj)
+export function isPromise<T>(value: T) {
+  return _prototypeof(value, 'Promise')
 }
 
-export function isFunction<T>(obj: T) {
-  return Object.prototype.toString.call(obj) === '[object Function]'
+export function isBlank<T>(value: T) {
+  if (
+    isFalsy(value) ||
+    isWhitespaceString(value) ||
+    isEmptyArray(value) ||
+    isEmptyObject(value) ||
+    isInvalidDate(value) ||
+    isEmptySet(value) ||
+    isEmptyMap(value)
+  )
+    return true
+  return false
 }
 
-export function isEmpty<T>(obj: T) {
-  return obj === undefined || obj === null
-}
-
-export function hasOwnProperty<T>(obj: T, key: PropertyKey) {
+export function hasOwnProperty<T extends object>(obj: T, key: PropertyKey) {
   return Object.prototype.hasOwnProperty.call(obj, key)
+}
+
+function _prototypeof<T>(value: T, type: ValueType | ValueType[]) {
+  if (Array.isArray(type)) {
+    const types = type.map((t) => `[object ${t}]`)
+    return types.includes(toString.call(value))
+  }
+  return toString.call(value) === `[object ${type}]`
+}
+
+function isFalsy<T>(value: T) {
+  return !value
+}
+
+function isEmptyArray<T>(value: T) {
+  return Array.isArray(value) && value.length === 0
+}
+
+function isObject<T>(value: T) {
+  return _prototypeof(value, 'Object')
+}
+
+function isEmptyObject<T>(value: T) {
+  return isObject(value) && Reflect.ownKeys(value as object).length === 0
+}
+
+function isWhitespaceString<T>(value: T) {
+  return typeof value === 'string' && /^\s*$/.test(value)
+}
+
+function isInvalidDate<T>(value: T) {
+  return value instanceof Date && Number.isNaN(value.getTime())
+}
+
+function isEmptySet<T>(value: T) {
+  return value instanceof Set && value.size === 0
+}
+
+function isEmptyMap<T>(value: T) {
+  return value instanceof Map && value.size === 0
 }
