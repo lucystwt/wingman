@@ -6,18 +6,18 @@ import {
   isFunction,
   isPromise,
   isRegExp,
-} from '../src/judges'
+} from "../src/judges"
 
 const valueTypeData = {
-  object: { name: 'zs', age: 23, gender: false },
+  object: { name: "zs", age: 23, gender: false },
   function: (a: number, b: number) => a + b,
   asyncFunction: async (a: number, b: number) => a + b,
-  promise: Promise.resolve('promise'),
+  promise: Promise.resolve("promise"),
   date: new Date(111123123124124),
   regexp: /^regex$/g,
   null: null,
   undefined: undefined,
-  emptyString: '',
+  emptyString: "",
   emptyObject: {},
   emptyArray: [],
   emptySet: new Set(),
@@ -36,36 +36,36 @@ function mockJudgesTest(
   })
 }
 
-describe('judgment data type', () => {
-  test('isFunction', () => {
-    mockJudgesTest(isFunction, ['function', 'asyncFunction', 'promise'])
+describe("judgment data type", () => {
+  test("isFunction", () => {
+    mockJudgesTest(isFunction, ["function", "asyncFunction", "promise"])
   })
-  test('isAsyncFunction', () => {
-    mockJudgesTest(isAsyncFunction, ['asyncFunction'])
+  test("isAsyncFunction", () => {
+    mockJudgesTest(isAsyncFunction, ["asyncFunction"])
   })
-  test('isDate', () => {
-    mockJudgesTest(isDate, ['date'])
+  test("isDate", () => {
+    mockJudgesTest(isDate, ["date"])
   })
-  test('isRegexp', () => {
-    mockJudgesTest(isRegExp, ['regexp'])
+  test("isRegexp", () => {
+    mockJudgesTest(isRegExp, ["regexp"])
   })
-  test('isPromise', () => {
-    mockJudgesTest(isPromise, ['promise'])
+  test("isPromise", () => {
+    mockJudgesTest(isPromise, ["promise"])
   })
-  test('isBlank', () => {
+  test("isBlank", () => {
     mockJudgesTest(isBlank, [
-      'null',
-      'undefined',
-      'emptyString',
-      'emptyObject',
-      'emptyArray',
-      'emptySet',
-      'emptyMap',
+      "null",
+      "undefined",
+      "emptyString",
+      "emptyObject",
+      "emptyArray",
+      "emptySet",
+      "emptyMap",
     ])
   })
 })
 
-test('hasOwnProperty', () => {
-  expect(hasOwnProperty(valueTypeData.object, 'name')).toBe(true)
-  expect(hasOwnProperty(valueTypeData.object, 'six')).toBe(false)
+test("hasOwnProperty", () => {
+  expect(hasOwnProperty(valueTypeData.object, "name")).toBe(true)
+  expect(hasOwnProperty(valueTypeData.object, "six")).toBe(false)
 })

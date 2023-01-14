@@ -1,40 +1,40 @@
 type ValueType =
-  | 'Object'
-  | 'Array'
-  | 'Function'
-  | 'GeneratorFunction'
-  | 'AsyncFunction'
-  | 'Promise'
-  | 'RegExp'
-  | 'Date'
-  | 'Set'
-  | 'Map'
+  | "Object"
+  | "Array"
+  | "Function"
+  | "GeneratorFunction"
+  | "AsyncFunction"
+  | "Promise"
+  | "RegExp"
+  | "Date"
+  | "Set"
+  | "Map"
 
 const toString = Object.prototype.toString
 
 export function isFunction<T>(value: T) {
   return _prototypeof(value, [
-    'Function',
-    'GeneratorFunction',
-    'AsyncFunction',
-    'Promise',
+    "Function",
+    "GeneratorFunction",
+    "AsyncFunction",
+    "Promise",
   ])
 }
 
 export function isAsyncFunction<T>(value: T) {
-  return _prototypeof(value, 'AsyncFunction')
+  return _prototypeof(value, "AsyncFunction")
 }
 
 export function isRegExp<T>(value: T) {
-  return _prototypeof(value, 'RegExp')
+  return _prototypeof(value, "RegExp")
 }
 
 export function isDate<T>(value: T) {
-  return _prototypeof(value, 'Date')
+  return _prototypeof(value, "Date")
 }
 
 export function isPromise<T>(value: T) {
-  return _prototypeof(value, 'Promise')
+  return _prototypeof(value, "Promise")
 }
 
 export function isBlank<T>(value: T) {
@@ -72,7 +72,7 @@ function isEmptyArray<T>(value: T) {
 }
 
 function isObject<T>(value: T) {
-  return _prototypeof(value, 'Object')
+  return _prototypeof(value, "Object")
 }
 
 function isEmptyObject<T>(value: T) {
@@ -80,7 +80,7 @@ function isEmptyObject<T>(value: T) {
 }
 
 function isWhitespaceString<T>(value: T) {
-  return typeof value === 'string' && /^\s*$/.test(value)
+  return typeof value === "string" && /^\s*$/.test(value)
 }
 
 function isInvalidDate<T>(value: T) {

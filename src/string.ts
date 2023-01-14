@@ -3,7 +3,7 @@ export function capitalize(str: string) {
 }
 
 export function reverse(str: string) {
-  return str.split('').reverse().join('')
+  return str.split("").reverse().join("")
 }
 
 export function truncateString(str: string, len: number) {
@@ -12,6 +12,6 @@ export function truncateString(str: string, len: number) {
 
 export function stripHtml(html: string) {
   return (
-    new DOMParser().parseFromString(html, 'text/html').body.textContent || ''
+    new DOMParser().parseFromString(html, "text/html").body.textContent || ""
   )
 }

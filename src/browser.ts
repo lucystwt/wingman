@@ -11,16 +11,16 @@ export function getUrlParams<T extends Record<string, any>>(query: string): T {
 export function copyToClipboard(text: string) {
   if (navigator && navigator.clipboard && navigator.clipboard.writeText)
     return navigator.clipboard.writeText(text)
-  return Promise.reject('The Clipboard API is not support.')
+  return Promise.reject("The Clipboard API is not support.")
 }
 
 export function clearCookies() {
   document.cookie
-    .split(';')
+    .split(";")
     .forEach(
       (c) =>
         (document.cookie = c
-          .replace(/^ +/, '')
+          .replace(/^ +/, "")
           .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`))
     )
 }
@@ -32,7 +32,7 @@ export function getSelectedText() {
 export function isDarkMode() {
   return (
     window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches
+    window.matchMedia("(prefers-color-scheme: dark)").matches
   )
 }
 

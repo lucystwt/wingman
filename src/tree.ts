@@ -5,8 +5,8 @@ export type TreeNode<T> = T & {
 export function arrayToTree<T extends Record<string, never>>(
   data: T[],
   parentId: string | number | null = null,
-  parentIdField = 'parentId',
-  idField = 'id'
+  parentIdField = "parentId",
+  idField = "id"
 ): TreeNode<T>[] {
   const nodes: TreeNode<T>[] = []
   data.forEach((item) => {
@@ -23,8 +23,8 @@ export function arrayToTree<T extends Record<string, never>>(
 export function arrayToTreeReduce<T extends Record<string, never>>(
   data: T[],
   parentId: string | number | null = null,
-  parentIdField = 'parentId',
-  idField = 'id'
+  parentIdField = "parentId",
+  idField = "id"
 ): TreeNode<T>[] {
   return data.reduce<TreeNode<T>[]>(
     (pv, cv) =>
