@@ -1,40 +1,39 @@
-import { createRequire } from 'node:module'
+import { createRequire } from "node:module"
 
-import commonjs from '@rollup/plugin-commonjs'
-import nodeResolve from '@rollup/plugin-node-resolve'
-import terser from '@rollup/plugin-terser'
-import typescript from '@rollup/plugin-typescript'
-import { defineConfig } from 'rollup'
-import dts from 'rollup-plugin-dts'
+import { babel } from "@rollup/plugin-babel"
+import commonjs from "@rollup/plugin-commonjs"
+import nodeResolve from "@rollup/plugin-node-resolve"
+import terser from "@rollup/plugin-terser"
+import typescript from "@rollup/plugin-typescript"
+import { defineConfig } from "rollup"
+import dts from "rollup-plugin-dts"
 
 const _require = createRequire(import.meta.url)
-const pkg = _require('./package.json')
+const pkg = _require("./package.json")
 
 export default defineConfig([
   {
-    input: 'src/main.ts',
+    input: "src/main.ts",
     output: [
-      {
-        file: pkg.module,
-        format: 'es',
-        sourcemap: true,
-      },
-      {
-        file: pkg.main,
-        format: 'cjs',
-        sourcemap: true,
-      },
+      { file: pkg.main, format: "cjs" },
+      { file: pkg.module, format: "es" },
+      { file: "dist/index.min.js", format: "umd", name: "wingman" },
     ],
     plugins: [
       nodeResolve(),
       commonjs(),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({ tsconfig: "./tsconfig.json" }),
+      babel({
+        presets: ["@babel/preset-env", "@babel/preset-typescript"],
+        extensions: [".js", ".ts"],
+        babelHelpers: "bundled",
+      }),
       terser(),
     ],
   },
   {
-    input: 'dist/types/main.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'es' }],
+    input: "dist/types/main.d.ts",
+    output: [{ file: "dist/index.d.ts", format: "es" }],
     plugins: [dts()],
   },
 ])
