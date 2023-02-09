@@ -1,6 +1,6 @@
 {
   "name": "lil-wingman",
-  "version": "0.5.2",
+  "version": "0.6.1",
   "license": "MIT",
   "author": "lucystwt",
   "description": "A JavaScript helper library, written in TypeScript.",
@@ -19,7 +19,7 @@
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
@@ -29,14 +29,13 @@
     }
   },
   "scripts": {
-    "build": "pnpm clean && pnpm build:types && rollup -c",
-    "build:types": "tsc -b ./tsconfig.types.json",
+    "dev": "rollup -c -w",
+    "build": "rimraf dist && rollup -c",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "check": "tsc -p tsconfig.json --noEmit",
-    "clean": "rimraf dist",
     "ci": "pnpm build && pnpm test && pnpm lint && pnpm check",
     "prepublishOnly": "pnpm ci",
     "prepare": "husky install"

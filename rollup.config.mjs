@@ -17,7 +17,7 @@ export default defineConfig([
     output: [
       { file: pkg.main, format: "cjs" },
       { file: pkg.module, format: "es" },
-      { file: "dist/index.min.js", format: "umd", name: "wingman" },
+      { file: "dist/index.js", format: "umd", name: "wingman" },
     ],
     plugins: [
       nodeResolve(),

@@ -8,19 +8,11 @@
     "skipLibCheck": true,
     "moduleResolution": "Node",
     "isolatedModules": true,
+    "declaration": true,
+    "declarationDir": "./types",
     "removeComments": true,
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"]
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "test"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "test"]
 }
