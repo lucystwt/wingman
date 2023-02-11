@@ -15,25 +15,24 @@ export default defineConfig([
   {
     input: "src/main.ts",
     output: [
-      { file: pkg.main, format: "cjs" },
       { file: pkg.module, format: "es" },
-      { file: "dist/index.js", format: "umd", name: "wingman" },
+      { file: pkg.main, format: "cjs" },
     ],
     plugins: [
-      nodeResolve(),
       commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
+      nodeResolve(),
+      typescript(),
       babel({
-        presets: ["@babel/preset-env", "@babel/preset-typescript"],
-        extensions: [".js", ".ts"],
         babelHelpers: "bundled",
+        presets: ["@babel/preset-env"],
+        extensions: [".js", ".ts"],
       }),
       terser(),
     ],
   },
   {
     input: "dist/types/main.d.ts",
-    output: [{ file: "dist/index.d.ts", format: "es" }],
+    output: [{ file: pkg.types, format: "es" }],
     plugins: [dts()],
   },
 ])

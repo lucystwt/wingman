@@ -1,4 +1,7 @@
-import { randomHexColor } from "../src/random"
+import { expect } from "vitest"
+import { test } from "vitest"
+
+import { randomHexColor } from "./random"
 
 test("randomHex", () => {
   expect(randomHexColor()).toHaveLength(7)

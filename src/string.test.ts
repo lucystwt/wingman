@@ -1,4 +1,7 @@
-import { stripHtml } from "../src/string"
+import { expect } from "vitest"
+import { test } from "vitest"
+
+import { stripHtml } from "./string"
 
 const htmlTemplate1 = `<div>
   <h4>Title</h4>

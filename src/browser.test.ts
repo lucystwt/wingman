@@ -1,4 +1,7 @@
-import { getUrlParams } from "../src/browser"
+import { expect } from "vitest"
+import { test } from "vitest"
+
+import { getUrlParams } from "./browser"
 
 test("getUrlParams", () => {
   expect(getUrlParams("foo=Foo&bar=Bar")).toHaveProperty("bar", "Bar")

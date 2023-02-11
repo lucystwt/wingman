@@ -1,4 +1,7 @@
-import { hexToRgb, rgbToHex } from "../src/convert"
+import { expect } from "vitest"
+import { test } from "vitest"
+
+import { hexToRgb, rgbToHex } from "./convert"
 
 test("rgbToHex", () => {
   expect(rgbToHex([80, 11, 79]).toLowerCase()).toBe("#500b4f")

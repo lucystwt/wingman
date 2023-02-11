@@ -1,3 +1,7 @@
+import { describe } from "vitest"
+import { test } from "vitest"
+import { expect } from "vitest"
+
 import {
   hasOwnProperty,
   isAsyncFunction,
@@ -6,7 +10,7 @@ import {
   isFunction,
   isPromise,
   isRegExp,
-} from "../src/judges"
+} from "./judges"
 
 const valueTypeData = {
   object: { name: "zs", age: 23, gender: false },
