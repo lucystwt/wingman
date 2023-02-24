@@ -3,35 +3,34 @@ import { createRequire } from "node:module";
 import { babel } from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import nodeResolve from "@rollup/plugin-node-resolve";
-import terser from "@rollup/plugin-terser";
-import typescript from "@rollup/plugin-typescript";
 import { defineConfig } from "rollup";
 import dts from "rollup-plugin-dts";
+import esbuild from "rollup-plugin-esbuild";
 
 const _require = createRequire(import.meta.url);
 const pkg = _require("./package.json");
+const entry = "src/main.ts";
 
 export default defineConfig([
   {
-    input: "src/main.ts",
+    input: entry,
     output: [
-      { file: pkg.module, format: "es" },
-      { file: pkg.main, format: "cjs" },
+      { file: pkg.module, format: "es", sourcemap: true },
+      { file: pkg.main, format: "cjs", sourcemap: true },
     ],
     plugins: [
       commonjs(),
       nodeResolve(),
-      typescript(),
+      esbuild(),
       babel({
         babelHelpers: "bundled",
         presets: ["@babel/preset-env"],
         extensions: [".js", ".ts"],
       }),
-      terser(),
     ],
   },
   {
-    input: "dist/types/main.d.ts",
+    input: entry,
     output: [{ file: pkg.types, format: "es" }],
     plugins: [dts()],
   },
