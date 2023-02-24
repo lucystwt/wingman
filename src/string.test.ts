@@ -1,7 +1,7 @@
-import { expect } from "vitest"
-import { test } from "vitest"
+import { expect } from "vitest";
+import { test } from "vitest";
 
-import { stripHtml } from "./string"
+import { stripHtml } from "./string";
 
 const htmlTemplate1 = `<div>
   <h4>Title</h4>
@@ -20,21 +20,21 @@ const htmlTemplate1 = `<div>
       </div>
     </div>
   </form>
-</div>`
+</div>`;
 
 const htmlTemplate2 =
-  "<a><mark>mTOR</mark>-regulated mitochondrial metabolism limits mycobacterium-induced cytotoxicity</a >"
+  "<a><mark>mTOR</mark>-regulated mitochondrial metabolism limits mycobacterium-induced cytotoxicity</a >";
 
 const htmlTemplate3 =
-  "<mark>mTOR</mark>-regulated mitochondrial metabolism limits mycobacterium-induced cytotoxicity"
+  "<mark>mTOR</mark>-regulated mitochondrial metabolism limits mycobacterium-induced cytotoxicity";
 
 test("stripHtml", () => {
-  expect(stripHtml(htmlTemplate1)).toMatch("Password")
-  expect(stripHtml(htmlTemplate1)).not.toMatch("<")
+  expect(stripHtml(htmlTemplate1)).toMatch("Password");
+  expect(stripHtml(htmlTemplate1)).not.toMatch("<");
 
-  expect(stripHtml(htmlTemplate2)).toMatch("regulated mitochondrial metabo")
-  expect(stripHtml(htmlTemplate2)).not.toMatch(">")
+  expect(stripHtml(htmlTemplate2)).toMatch("regulated mitochondrial metabo");
+  expect(stripHtml(htmlTemplate2)).not.toMatch(">");
 
-  expect(stripHtml(htmlTemplate3)).toMatch("mTOR")
-  expect(stripHtml(htmlTemplate3)).not.toMatch("<")
-})
+  expect(stripHtml(htmlTemplate3)).toMatch("mTOR");
+  expect(stripHtml(htmlTemplate3)).not.toMatch("<");
+});

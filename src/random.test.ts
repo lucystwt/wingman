@@ -1,12 +1,12 @@
-import { expect } from "vitest"
-import { test } from "vitest"
+import { expect } from "vitest";
+import { test } from "vitest";
 
-import { randomHexColor } from "./random"
+import { randomHexColor } from "./random";
 
 test("randomHex", () => {
-  expect(randomHexColor()).toHaveLength(7)
-  expect(randomHexColor()[0]).toBe("#")
+  expect(randomHexColor()).toHaveLength(7);
+  expect(randomHexColor()[0]).toBe("#");
   expect(randomHexColor()).toMatch(
     /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}|[a-fA-F0-9]{8}|[a-fA-F0-9]{4})$/
-  )
-})
+  );
+});

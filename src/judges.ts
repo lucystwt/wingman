@@ -10,7 +10,7 @@ type ValueType =
   | "Set"
   | "Map"
 
-const toString = Object.prototype.toString
+const toString = Object.prototype.toString;
 
 export function isFunction<T>(value: T) {
   return _prototypeof(value, [
@@ -18,23 +18,23 @@ export function isFunction<T>(value: T) {
     "GeneratorFunction",
     "AsyncFunction",
     "Promise",
-  ])
+  ]);
 }
 
 export function isAsyncFunction<T>(value: T) {
-  return _prototypeof(value, "AsyncFunction")
+  return _prototypeof(value, "AsyncFunction");
 }
 
 export function isRegExp<T>(value: T) {
-  return _prototypeof(value, "RegExp")
+  return _prototypeof(value, "RegExp");
 }
 
 export function isDate<T>(value: T) {
-  return _prototypeof(value, "Date")
+  return _prototypeof(value, "Date");
 }
 
 export function isPromise<T>(value: T) {
-  return _prototypeof(value, "Promise")
+  return _prototypeof(value, "Promise");
 }
 
 export function isBlank<T>(value: T) {
@@ -47,50 +47,50 @@ export function isBlank<T>(value: T) {
     isEmptySet(value) ||
     isEmptyMap(value)
   )
-    return true
-  return false
+    return true;
+  return false;
 }
 
 export function hasOwnProperty<T extends object>(obj: T, key: PropertyKey) {
-  return Object.prototype.hasOwnProperty.call(obj, key)
+  return Object.prototype.hasOwnProperty.call(obj, key);
 }
 
 function _prototypeof<T>(value: T, type: ValueType | ValueType[]) {
   if (Array.isArray(type)) {
-    const types = type.map((t) => `[object ${t}]`)
-    return types.includes(toString.call(value))
+    const types = type.map((t) => `[object ${t}]`);
+    return types.includes(toString.call(value));
   }
-  return toString.call(value) === `[object ${type}]`
+  return toString.call(value) === `[object ${type}]`;
 }
 
 function isFalsy<T>(value: T) {
-  return !value
+  return !value;
 }
 
 function isEmptyArray<T>(value: T) {
-  return Array.isArray(value) && value.length === 0
+  return Array.isArray(value) && value.length === 0;
 }
 
 function isObject<T>(value: T) {
-  return _prototypeof(value, "Object")
+  return _prototypeof(value, "Object");
 }
 
 function isEmptyObject<T>(value: T) {
-  return isObject(value) && Reflect.ownKeys(value as object).length === 0
+  return isObject(value) && Reflect.ownKeys(value as object).length === 0;
 }
 
 function isWhitespaceString<T>(value: T) {
-  return typeof value === "string" && /^\s*$/.test(value)
+  return typeof value === "string" && /^\s*$/.test(value);
 }
 
 function isInvalidDate<T>(value: T) {
-  return value instanceof Date && Number.isNaN(value.getTime())
+  return value instanceof Date && Number.isNaN(value.getTime());
 }
 
 function isEmptySet<T>(value: T) {
-  return value instanceof Set && value.size === 0
+  return value instanceof Set && value.size === 0;
 }
 
 function isEmptyMap<T>(value: T) {
-  return value instanceof Map && value.size === 0
+  return value instanceof Map && value.size === 0;
 }

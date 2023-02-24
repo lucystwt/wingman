@@ -8,16 +8,16 @@ export function arrayToTree<T extends Record<string, never>>(
   parentIdField = "parentId",
   idField = "id"
 ): TreeNode<T>[] {
-  const nodes: TreeNode<T>[] = []
+  const nodes: TreeNode<T>[] = [];
   data.forEach((item) => {
     if (item[parentIdField] === parentId) {
-      const node: TreeNode<T> = { ...item }
-      const children = arrayToTree(data, item[idField], parentIdField, idField)
-      if (children.length > 0) node.children = children
-      nodes.push(node)
+      const node: TreeNode<T> = { ...item };
+      const children = arrayToTree(data, item[idField], parentIdField, idField);
+      if (children.length > 0) node.children = children;
+      nodes.push(node);
     }
-  })
-  return nodes
+  });
+  return nodes;
 }
 
 export function arrayToTreeReduce<T extends Record<string, never>>(
@@ -43,5 +43,5 @@ export function arrayToTreeReduce<T extends Record<string, never>>(
         ]
         : pv,
     []
-  )
+  );
 }
